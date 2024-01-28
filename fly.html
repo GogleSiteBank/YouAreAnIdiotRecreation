@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YOU ARE AN IDIOT</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      cursor: move;
+    }
+
+    #flyButton {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #fff; 
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="flyButton" onclick="idiot()">YOU ARE AN IDIOT</div>
+
+  <script>
+    let windowX = window.innerWidth / 2;
+    let windowY = window.innerHeight / 2;
+    let horizontalDirection = 1;
+    let verticalDirection = 1;
+    const speed = 25;
+
+    function moveWindow() {
+      windowX += speed * horizontalDirection;
+      windowY += speed * verticalDirection;
+
+      if (windowX <= 0 || windowX >= window.screen.width - window.innerWidth) {
+        horizontalDirection *= -1;
+      }
+
+      if (windowY <= 0 || windowY >= window.screen.height - window.innerHeight) {
+        verticalDirection *= -1;
+      }
+
+      window.moveTo(windowX, windowY);
+    }
+
+    function update() {
+      moveWindow();
+      requestAnimationFrame(update);
+    }
+
+    function idiot() {
+      window.open('fly.html', '_blank', 'width=800,height=800');
+    }
+
+    update();
+  </script>
+</body>
+</html>
